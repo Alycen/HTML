@@ -1,4 +1,5 @@
-var civ1, civ2, civ3, civ4, civ5;
+var m_civArray = [];
+var tempCop;
 
 function Level () {
 	// List<Civilian> // includes objects that inherit from Civilian
@@ -17,30 +18,33 @@ function Level () {
 	this.knoll = new Image();
 	this.knoll.src = "assets/gfx/game/level/grassyknoll.png";
 
-	civ1 = new Civilian(-150, game.screenHeight - 300, 1);
-	civ2 = new Civilian(-24, game.screenHeight - 297, 1);
-	civ3 = new Civilian(game.screenWidth + 20, game.screenHeight - 257, 1);
-	civ4 = new Civilian(-30, game.screenHeight - 320, 1);
-	civ5 = new Civilian(game.screenWidth + 20, game.screenHeight - 311, 2);
+	tempCop = new Police(-50, Math.floor(Math.random() * 320) + 280)
+
+	for( i = 0; i < 6; i++ ) {
+		if(Math.floor(Math.random() * 2) + 1 == 1)
+			m_civArray[i] = new Civilian(-50, Math.floor(Math.random() * 320) + 280, 1);
+		else 
+			m_civArray[i] = new Civilian(game.screenWidth + 20, Math.floor(Math.random() * 300) + 210, 1);
+	}
+
+	var len = m_civArray.length;
+	if(Math.floor(Math.random() * 2) + 1 == 1)
+		m_civArray[len] = new Civilian(-50, Math.floor(Math.random() * 320) + 280, 2);
+	else 
+		m_civArray[len] = new Civilian(game.screenWidth + 20, Math.floor(Math.random() * 300) + 210, 2);
 }
 
-// The levels scale will increase when the PLAYER inits the RangeFinder State or Sniper State
-// CheckShotCivilian(Civilian Victim)
-
 Level.prototype.Update = function() {
-	civ1.Update();
-	civ2.Update();
-	civ3.Update();
-	civ4.Update();
-	civ5.Update();
+	for( i = 0; i < m_civArray.length; i ++ )
+		m_civArray[i].Update();
+
+	tempCop.Update();
 }
 
 Level.prototype.Draw = function() {
 	game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
-	civ1.Draw();
-	civ2.Draw();
-	civ3.Draw();
-	civ4.Draw();
-	civ5.Draw();
-	//console.log("Level Drawing");
+	for( i = 0; i <  m_civArray.length; i ++ )
+		m_civArray[i].Draw();
+
+	tempCop.Draw();
 }
