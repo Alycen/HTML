@@ -3,12 +3,15 @@ var m_copArray = [];
 var m_ammo;
 
 function Level (levelNum) {
-	// List<Civilian> // includes objects that inherit from Civilian
+	this.isVisible = false;
+
 	this.x = 0;
 	this.y = 0;
 	this.width = game.screenWidth;
 	this.height = game.screenHeight;
 	this.scale = 1;
+
+	this.num = levelNum;
 
 	this.alert = true;
 
@@ -52,17 +55,19 @@ Level.prototype.Update = function() {
 }
 
 Level.prototype.Draw = function() {
+	if( this.isVisible) {
+		game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
+		for( i = 0; i <  m_civArray.length; i ++ )
+			m_civArray[i].Draw();
 
-	game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
-	for( i = 0; i <  m_civArray.length; i ++ )
-		m_civArray[i].Draw();
+		if(this.alert) {
+			for( i = 0; i < m_copArray.length; i ++ )
+				m_copArray[i].Draw();
+		}	
 
-	if(this.alert) {
-		for( i = 0; i < m_copArray.length; i ++ )
-			m_copArray[i].Draw();
-	}	
-
-	game.ctx.drawImage(this.curtain, this.x, this.y, this.width, this.height);
+		game.ctx.drawImage(this.curtain, this.x, this.y, this.width, this.height);
+	}
+	else {}
 }
 
 Level.prototype.checkShot = function(x,y) {
