@@ -1,7 +1,8 @@
 var m_civArray = [];
-var tempCop;
+var m_copArray = [];
+var m_ammo;
 
-function Level () {
+function Level (levelNum) {
 	// List<Civilian> // includes objects that inherit from Civilian
 	this.x = 0;
 	this.y = 0;
@@ -17,8 +18,6 @@ function Level () {
 	this.tent.src = "assets/gfx/game/level/tent.png";
 	this.knoll = new Image();
 	this.knoll.src = "assets/gfx/game/level/grassyknoll.png";
-
-	tempCop = new Police(-50, Math.floor(Math.random() * 320) + 280)
 
 	for( i = 0; i < 6; i++ ) {
 		if(Math.floor(Math.random() * 2) + 1 == 1)
@@ -37,14 +36,10 @@ function Level () {
 Level.prototype.Update = function() {
 	for( i = 0; i < m_civArray.length; i ++ )
 		m_civArray[i].Update();
-
-	tempCop.Update();
 }
 
 Level.prototype.Draw = function() {
 	game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
 	for( i = 0; i <  m_civArray.length; i ++ )
 		m_civArray[i].Draw();
-
-	tempCop.Draw();
 }
