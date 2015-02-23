@@ -65,9 +65,9 @@ Game.prototype.initCanvas = function() {
 
 	if(touchable)
 	{
-		this.canvas.addEventListener('onTouchStart',onTouchStart,false);
-		this.canvas.addEventListener('onTouchMove',onTouchMove,false);
-		this.canvas.addEventListener('onTouchEnd',onTouchEnd,false);
+		this.canvas.addEventListener("onTouchStart",onTouchStart,false);
+		this.canvas.addEventListener("onTouchMove",onTouchMove,false);
+		this.canvas.addEventListener("onTouchEnd",onTouchEnd,false);
 	}
 }
 

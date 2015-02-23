@@ -15,6 +15,8 @@ function Level (levelNum) {
 
 	this.alert = true;
 
+	m_ammo = 3;
+	
 	this.curtain = new Image();
 	this.curtain.src = "assets/gfx/game/level/curtains.png";
 	this.city = new Image();
