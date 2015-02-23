@@ -24,6 +24,8 @@ function Level (levelNum) {
 	this.knoll = new Image();
 	this.knoll.src = "assets/gfx/game/level/grassyknoll.png";
 
+	var numOfCivs;
+
 	for( i = 0; i < 6; i++ ) {
 		if(Math.floor(Math.random() * 2) + 1 == 1)
 			m_civArray[i] = new Civilian(-50, Math.floor(Math.random() * 320) + 280, 1);
@@ -52,6 +54,14 @@ Level.prototype.Update = function() {
 
 	for( i = 0; i < m_copArray.length; i ++ )
 		m_copArray[i].Update();
+}
+
+Level.prototype.Level1 = function() {
+
+}
+
+Level.prototype.Level2 = function() {
+
 }
 
 Level.prototype.Draw = function() {

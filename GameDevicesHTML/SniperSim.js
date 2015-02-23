@@ -1,6 +1,7 @@
 var game;
 var MAINMENU = 0, LEVEL_ONE = 1, LEVEL_TWO = 2;
 var mainMenu, level_1, level_2;
+
 var requestAnimFrame = (function(){
     return window.requestAnimationFrame       ||
         window.webkitRequestAnimationFrame ||
@@ -29,6 +30,7 @@ function Game() {
 
 function main() {
 	game = new Game();
+	game.touches = [];
 	mainMenu = new MainMenu();
 	level_1 = new Level(1);
 	level_2 = new Level(2);

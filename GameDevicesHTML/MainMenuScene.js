@@ -30,21 +30,43 @@ MainMenu.prototype.createScene = function() {
 }
 
 MainMenu.prototype.Update = function() {
+	this.checkAudioSelect();
+	this.checkMultiSelect();
+	this.checkPlaySelect();
+
 	if( this.audioOn )
 		this.audio.play();
 	else
 		this.audio.pause();
 }
 
+MainMenu.prototype.checkPlaySelect = function() {
+	for( i = 0; i < game.touches.length; i++ ) {
+		var touch = game.touches[i];
+
+		//game.screenWidth / 2) - (this.mainBtnWidth / 2), (game.screenHeight / 2) - (this.mainBtnHeight / 2) - 10, this.mainBtnWidth, this.mainBtnHeight
+
+		if(( touch.clientX > game.screenWidth / 2) - (this.mainBtnWidth / 2) && touch.clientX < 40 && touch.clientY > 20 && touch.clientY < 40 ) {
+			this.audioOn = true;
+			this.click.play();
+		}
+		else if( touch.clientX > 20 && touch.clientX < 40 && touch.clientY > 20 && touch.clientY < 40 ) {
+			this.audioOn = false;
+			this.click.play();
+		}
+	}
+}
+
+
 MainMenu.prototype.checkAudioSelect = function() {
 	for( i = 0; i < game.touches.length; i++ ) {
 		var touch = game.touches[i];
 
-		if( touch.clientX > 20 && touch.clientX < 40 && touch.clientY > 20 && touch.clientY < 40 && this.audioOn == false) {
+		if( touch.clientX > 20 && touch.clientX < 20 + this.smallBtn && touch.clientY > 20 && touch.clientY < 20 + this.smallBtn && this.audioOn == false) {
 			this.audioOn = true;
 			this.click.play();
 		}
-		else if( touch.clientX > 20 && touch.clientX < 40 && touch.clientY > 20 && touch.clientY < 40 && this.audioOn == true) {
+		else if( touch.clientX > 20 && touch.clientX < 20 + this.smallBtn && touch.clientY > 20 && touch.clientY < 20 + this. smallBtn && this.audioOn == true) {
 			this.audioOn = false;
 			this.click.play();
 		}
