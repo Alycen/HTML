@@ -18,18 +18,15 @@ function Game() {
 	this.screenHeight = window.innerHeight;
 	this.isMultiplayer = false;
 
-	
-	
-	
-
 	this.sniper = new Image();
 	this.sniper.src = "assets/gfx/game/rifle/scope.png"
 	this.sniperIsVisible = false;
-	this.scene = MAINMENU;
+	this.scene = LEVEL_ONE;
 }
 
 function main() {
 	game = new Game();
+
 	game.touches = [];
 	mainMenu = new MainMenu();
 	level_1 = new Level(1);
@@ -41,8 +38,16 @@ function main() {
 	game.gameLoop();
 }
 
-Game.prototype.checkScene = function() {
-	if( this.scene == MAINMENU ) {}
+Game.prototype.setScene = function(num) {
+	if( num == MAINMENU ) {
+		this.scene = MAINMENU;
+	}
+	else if( num == LEVEL_ONE ) {
+		this.scene = LEVEL_ONE;
+	}
+	else if( num == LEVEL_TWO) {
+		this.scene = LEVEL_TWO;
+	}
 
 }
 
@@ -55,6 +60,15 @@ Game.prototype.initCanvas = function() {
 
 	this.canvas.width = this.screenWidth;
 	this.canvas.height  = this.screenHeight;
+	touchable = 'createTouch' in document;
+
+
+	if(touchable)
+	{
+		this.canvas.addEventListener('onTouchStart',onTouchStart,false);
+		this.canvas.addEventListener('onTouchMove',onTouchMove,false);
+		this.canvas.addEventListener('onTouchEnd',onTouchEnd,false);
+	}
 }
 
 Game.prototype.gameLoop = function() {
@@ -103,6 +117,7 @@ Game.prototype.setMultiplayer = function(state) {
 
 function onTouchStart(e) {
     e.preventDefault();
+    game.touches = e.touches;
     console.log("touch start");
 }
 
@@ -114,5 +129,6 @@ function onTouchMove(e) {
 
 function onTouchEnd(e) {
     e.preventDefault();
+    game.touches = e.touches;
     console.log("touch end");
 }

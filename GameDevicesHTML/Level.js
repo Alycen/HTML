@@ -24,9 +24,18 @@ function Level (levelNum) {
 	this.knoll = new Image();
 	this.knoll.src = "assets/gfx/game/level/grassyknoll.png";
 
-	var numOfCivs;
+	var numOfCivs, numOfCops;
 
-	for( i = 0; i < 6; i++ ) {
+	if(this.num == 1) {
+		numOfCivs = 6;
+		numOfCops = 3;
+	}
+	else if(this.num == 2) {
+		numOfCivs = 12;
+		numOfCops = 6;
+	}
+
+	for( i = 0; i < numOfCivs; i++ ) {
 		if(Math.floor(Math.random() * 2) + 1 == 1)
 			m_civArray[i] = new Civilian(-50, Math.floor(Math.random() * 320) + 280, 1);
 		else 
@@ -39,7 +48,7 @@ function Level (levelNum) {
 		m_civArray[m_civArray.length] = new Civilian(game.screenWidth + 20, Math.floor(Math.random() * 300) + 210, 2);
 
 	if( this.alert ) {
-		for( i = 0; i < 3; i++ ) {
+		for( i = 0; i < numOfCops; i++ ) {
 			if(Math.floor(Math.random() * 2) + 1 == 1)
 				m_copArray[i] = new Police(-50, Math.floor(Math.random() * 320) + 280);
 			else 
@@ -56,27 +65,34 @@ Level.prototype.Update = function() {
 		m_copArray[i].Update();
 }
 
-Level.prototype.Level1 = function() {
-
-}
-
-Level.prototype.Level2 = function() {
-
-}
-
 Level.prototype.Draw = function() {
 	if( this.isVisible) {
-		game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
-		for( i = 0; i <  m_civArray.length; i ++ )
-			m_civArray[i].Draw();
+		if(this.num == 1) {
+			game.ctx.drawImage(this.city, this.x, this.y, this.width, this.height);
+			for( i = 0; i <  m_civArray.length; i ++ )
+				m_civArray[i].Draw();
 
-		if(this.alert) {
-			for( i = 0; i < m_copArray.length; i ++ )
-				m_copArray[i].Draw();
-		}	
+			if(this.alert) {
+				for( i = 0; i < m_copArray.length; i ++ )
+					m_copArray[i].Draw();
+			}	
 
-		game.ctx.drawImage(this.curtain, this.x, this.y, this.width, this.height);
+			game.ctx.drawImage(this.curtain, this.x, this.y, this.width, this.height);
+		}
+		else if(this.num == 2) {
+			game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
+			for( i = 0; i <  m_civArray.length; i ++ )
+				m_civArray[i].Draw();
+
+			if(this.alert) {
+				for( i = 0; i < m_copArray.length; i ++ )
+					m_copArray[i].Draw();
+			}	
+
+			game.ctx.drawImage(this.curtain, this.x, this.y, this.width, this.height);
+		}
 	}
+
 	else {}
 }
 
