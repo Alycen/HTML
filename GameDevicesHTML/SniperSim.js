@@ -1,5 +1,5 @@
 var game;
-var LEVEL_ONE;
+var MAINMENU = 0, LEVEL_ONE = 1, LEVEL_TWO = 2;
 
 var requestAnimFrame = (function(){
     return window.requestAnimationFrame       ||
@@ -16,6 +16,11 @@ function Game() {
 	this.screenWidth = window.innerWidth;
 	this.screenHeight = window.innerHeight;
 	this.isMultiplayer = false;
+
+	this.sniper = new Image();
+	this.sniper.src = "assets/gfx/game/rifle/scope.png"
+	this.sniperIsVisible = false;
+	this.scene = MAINMENU;
 }
 
 function main() {
@@ -25,6 +30,11 @@ function main() {
 	game.initCanvas();
 	game.Draw();
 	game.gameLoop();
+}
+
+Game.prototype.checkScene = function() {
+	if( this.scene == MAINMENU )
+		
 }
 
 Game.prototype.initCanvas = function() {
@@ -53,6 +63,10 @@ Game.prototype.Draw = function() {
 Game.prototype.setMultiplayer = function(state) {
 	this.isMultiplayer = state;
 }
+
+
+
+
 
 function onTouchStart(e) {
     e.preventDefault();
