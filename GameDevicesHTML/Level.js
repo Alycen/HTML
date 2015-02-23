@@ -58,8 +58,9 @@ function Level (levelNum) {
 }
 
 Level.prototype.Update = function() {
-	for( i = 0; i < m_civArray.length; i ++ )
+	for( i = 0; i < m_civArray.length; i ++ ) 
 		m_civArray[i].Update();
+		
 
 	for( i = 0; i < m_copArray.length; i ++ )
 		m_copArray[i].Update();
@@ -75,6 +76,7 @@ Level.prototype.Draw = function() {
 			if(this.alert) {
 				for( i = 0; i < m_copArray.length; i ++ )
 					m_copArray[i].Draw();
+
 			}	
 
 			game.ctx.drawImage(this.curtain, this.x, this.y, this.width, this.height);

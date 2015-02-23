@@ -33,7 +33,8 @@ Civilian.prototype.Move = function() {
 	//Right edge
 	else if (this.dir == 1)
 		this.x -= this.speed;	
-
+	
+	console.log("dslga eqweg")
 	this.timer--;
 }
 
