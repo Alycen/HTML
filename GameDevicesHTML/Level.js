@@ -7,14 +7,21 @@ function Level () {
 	this.width = game.screenWidth;
 	this.height = game.screenHeight;
 	this.scale = 1;
-	this.img = new Image();
-	this.img.src = "assets/gfx/game/level/city.png";	// Sprite / Image for level
-	// TargetInfo
-	civ1 = new Civilian(150,50);
-	civ2 = new Civilian(200, 340);
-	civ3 = new Civilian(30, 60);
-	civ4 = new Civilian(300, 40);
-	civ5 = new Civilian(250, 100);
+
+	this.curtain = new Image();
+	this.curtain.src = "assets/gfx/game/level/curtains.png";
+	this.city = new Image();
+	this.city.src = "assets/gfx/game/level/city.png";	
+	this.tent = new Image();
+	this.tent.src = "assets/gfx/game/level/tent.png";
+	this.knoll = new Image();
+	this.knoll.src = "assets/gfx/game/level/grassyknoll.png";
+
+	civ1 = new Civilian(150, game.screenHeight - 300, 1);
+	civ2 = new Civilian(200, game.screenHeight - 297, 1);
+	civ3 = new Civilian(30, game.screenHeight - 257, 1);
+	civ4 = new Civilian(300, game.screenHeight - 320, 1);
+	civ5 = new Civilian(250, game.screenHeight - 311, 2);
 }
 
 // The levels scale will increase when the PLAYER inits the RangeFinder State or Sniper State
@@ -29,7 +36,7 @@ Level.prototype.Update = function() {
 }
 
 Level.prototype.Draw = function() {
-	game.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+	game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
 	civ1.Draw();
 	civ2.Draw();
 	civ3.Draw();

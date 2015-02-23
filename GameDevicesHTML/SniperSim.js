@@ -15,7 +15,7 @@ var requestAnimFrame = (function(){
 function Game() {
 	this.screenWidth = window.innerWidth;
 	this.screenHeight = window.innerHeight;
-	
+	this.isMultiplayer = false;
 }
 
 function main() {
@@ -48,4 +48,8 @@ Game.prototype.gameLoop = function() {
 Game.prototype.Draw = function() {
 	this.ctx.clearRect(0,0,this.screenWidth, this.screenHeight);
 	LEVEL_ONE.Draw();
+}
+
+Game.prototype.Multiplayer = function() {
+	
 }
