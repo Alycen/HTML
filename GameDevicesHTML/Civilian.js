@@ -13,13 +13,16 @@ function Civilian(xPos, yPos) {
 	this.scale = 1;
 	this.width = 20;	//width of tempNPC
 	this.height = 45;	//height of tempNPC
-	this.isMarked = false;
 	this.isShot = false;
 
-	this.img = new Image();
-	this.img.src = "tempNPC.png";
-	this.markImg = new Image();
-	this.markImg.src = "mark.png";
+	this.imgA = new Image();
+	this.imgA.src = "assets/gfx/game/npc/a.png";
+	this.imgB = new Image();
+	this.imgB.src = "assets/gfx/game/npc/b.png";
+	this.imgC = new Image();
+	this.imgC.src = "assets/gfx/game/npc/c.png";
+	this.imgD = new Image();
+	this.imgD.src = "assets/gfx/game/npc/d.png";
 	//States - Default, Alert;
 }
 
@@ -65,7 +68,7 @@ Civilian.prototype.Update = function() {
 }
 
 Civilian.prototype.Draw = function() {
-	game.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+	game.ctx.drawImage(this.imgA, this.x, this.y, this.width, this.height);
 }
 
 ///////////////////////////////////////////
@@ -81,10 +84,6 @@ Civilian.prototype.getPositionX = function() {
 }
 Civilian.prototype.getPositionY = function() {
 	return this.y;
-}
-
-Civilian.prototype.Marked = function() {
-	return this.isMarked;
 }
 
 Civilian.prototype.Shot = function() {
@@ -109,10 +108,6 @@ Civilian.prototype.setPositionX = function(newX) {
 Civilian.prototype.setPositionY = function(newY) {
 	this.y = newY;
 }
-
-Civilian.prototype.setMarked = function(marked) {
-	this.isMarked = marked;
-} 
 
 Civilian.prototype.setShot = function(shot) {
 	this.isShot = shot;

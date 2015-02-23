@@ -8,7 +8,7 @@ function Level () {
 	this.height = game.screenHeight;
 	this.scale = 1;
 	this.img = new Image();
-	this.img.src = "town.png";	// Sprite / Image for level
+	this.img.src = "assets/gfx/game/level/city.png";	// Sprite / Image for level
 	// TargetInfo
 	civ1 = new Civilian(150,50);
 	civ2 = new Civilian(200, 340);

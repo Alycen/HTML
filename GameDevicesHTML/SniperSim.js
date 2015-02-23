@@ -39,7 +39,6 @@ Game.prototype.initCanvas = function() {
 }
 
 Game.prototype.gameLoop = function() {
-	
 	LEVEL_ONE.Update();
 	game.Draw();
 	window.requestAnimFrame(game.gameLoop);
