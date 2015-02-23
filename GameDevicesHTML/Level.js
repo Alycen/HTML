@@ -10,6 +10,8 @@ function Level (levelNum) {
 	this.height = game.screenHeight;
 	this.scale = 1;
 
+	this.alert = true;
+
 	this.curtain = new Image();
 	this.curtain.src = "assets/gfx/game/level/curtains.png";
 	this.city = new Image();
@@ -26,20 +28,53 @@ function Level (levelNum) {
 			m_civArray[i] = new Civilian(game.screenWidth + 20, Math.floor(Math.random() * 300) + 210, 1);
 	}
 
-	var len = m_civArray.length;
 	if(Math.floor(Math.random() * 2) + 1 == 1)
-		m_civArray[len] = new Civilian(-50, Math.floor(Math.random() * 320) + 280, 2);
+		m_civArray[m_civArray.length] = new Civilian(-50, Math.floor(Math.random() * 320) + 280, 2);
 	else 
-		m_civArray[len] = new Civilian(game.screenWidth + 20, Math.floor(Math.random() * 300) + 210, 2);
+		m_civArray[m_civArray.length] = new Civilian(game.screenWidth + 20, Math.floor(Math.random() * 300) + 210, 2);
+
+	if( this.alert ) {
+		for( i = 0; i < 3; i++ ) {
+			if(Math.floor(Math.random() * 2) + 1 == 1)
+				m_copArray[i] = new Police(-50, Math.floor(Math.random() * 320) + 280);
+			else 
+				m_copArray[i] = new Police(game.screenWidth + 20, Math.floor(Math.random() * 300) + 210);
+		}
+	}		
 }
 
 Level.prototype.Update = function() {
 	for( i = 0; i < m_civArray.length; i ++ )
 		m_civArray[i].Update();
+
+	for( i = 0; i < m_copArray.length; i ++ )
+		m_copArray[i].Update();
 }
 
 Level.prototype.Draw = function() {
+
 	game.ctx.drawImage(this.knoll, this.x, this.y, this.width, this.height);
 	for( i = 0; i <  m_civArray.length; i ++ )
 		m_civArray[i].Draw();
+
+	if(this.alert) {
+		for( i = 0; i < m_copArray.length; i ++ )
+			m_copArray[i].Draw();
+	}	
+
+	game.ctx.drawImage(this.curtain, this.x, this.y, this.width, this.height);
+}
+
+Level.prototype.checkShot = function(x,y) {
+	if (this.alert == false)
+		this.alert = true;
+
+	for( i = 0; i < m_civArray.length; i ++ )
+		m_civArray[i].checkShot(x,y);
+
+	if( this.alert) {
+		for ( i = 0; i < m_copArray.length; i ++ ) 
+			m_copArray[i].checkShot(x,y); 
+	}
+
 }
