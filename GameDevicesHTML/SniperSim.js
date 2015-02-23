@@ -50,6 +50,22 @@ Game.prototype.Draw = function() {
 	LEVEL_ONE.Draw();
 }
 
-Game.prototype.Multiplayer = function() {
-	
+Game.prototype.setMultiplayer = function(state) {
+	this.isMultiplayer = state;
+}
+
+function onTouchStart(e) {
+    e.preventDefault();
+    console.log("touch start");
+}
+
+function onTouchMove(e) {
+    e.preventDefault();
+    game.touches = e.touches;
+    console.log("touch move");
+}
+
+function onTouchEnd(e) {
+    e.preventDefault();
+    console.log("touch end");
 }

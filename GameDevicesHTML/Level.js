@@ -17,11 +17,11 @@ function Level () {
 	this.knoll = new Image();
 	this.knoll.src = "assets/gfx/game/level/grassyknoll.png";
 
-	civ1 = new Civilian(150, game.screenHeight - 300, 1);
-	civ2 = new Civilian(200, game.screenHeight - 297, 1);
-	civ3 = new Civilian(30, game.screenHeight - 257, 1);
-	civ4 = new Civilian(300, game.screenHeight - 320, 1);
-	civ5 = new Civilian(250, game.screenHeight - 311, 2);
+	civ1 = new Civilian(-150, game.screenHeight - 300, 1);
+	civ2 = new Civilian(-24, game.screenHeight - 297, 1);
+	civ3 = new Civilian(game.screenWidth + 20, game.screenHeight - 257, 1);
+	civ4 = new Civilian(-30, game.screenHeight - 320, 1);
+	civ5 = new Civilian(game.screenWidth + 20, game.screenHeight - 311, 2);
 }
 
 // The levels scale will increase when the PLAYER inits the RangeFinder State or Sniper State
